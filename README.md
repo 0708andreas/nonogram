@@ -33,6 +33,6 @@ And invoke the program as such:
 $ python3 generator.py -i input.txt -o output.tex
 ```
 
-along with an optional `-s` or `--solution` if you want the solution to be part of the output. The compile the resulting tex-file using XeLaTeX.
+along with an optional `-s` or `--solution` if you want the solution to be part of the output. Then compile the resulting tex-file using XeLaTeX.
 
-Both input and out files are optional. If any of them are omitted, stdin/stdout wil be used respectively.
+Both input and output files are optional. If any of them are omitted, stdin/stdout wil be used respectively.
