@@ -30,7 +30,9 @@ XXXXXXXXXXXXXX------
 And invoke the program as such:
 
 ``` sh
-$ python3 generator.py input.txt output.tex
+$ python3 generator.py -i input.txt -o output.tex
 ```
 
 along with an optional `-s` or `--solution` if you want the solution to be part of the output. The compile the resulting tex-file using XeLaTeX.
+
+Both input and out files are optional. If any of them are omitted, stdin/stdout wil be used respectively.

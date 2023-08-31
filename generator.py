@@ -98,21 +98,23 @@ solution = False
 #
 
 import argparse
+import sys
 
 parser = argparse.ArgumentParser(
     prog = 'Nonogram tex-file generator',
     description = 'Generates a TEX-file for a nonogram puzzle.')
 
-parser.add_argument('infile')
-parser.add_argument('outfile')
+parser.add_argument('-i', '--input', type=argparse.FileType('r'), default=sys.stdin)
+parser.add_argument('-o', '--output', type=argparse.FileType('w'), default=sys.stdout)
 parser.add_argument('-s', '--solution', action='store_true')
 
 args = parser.parse_args()
-infile, outfile, solution = (args.infile, args.outfile, args.solution)
+infile, outfile, solution = (args.input, args.output, args.solution)
 
-with open(infile, 'r') as f:
-    m = f.read().split("\n")[:-1]
-    print(m)
+print(infile)
+
+with infile as f:
+    m = f.read().splitlines()
 
 rows = [[(next(group)[0], 1+sum(1 for _ in group)) for k, group in groupby(enumerate(line), key=lambda x: x[1]) if k == "X"]
                                for line in m]
@@ -138,5 +140,5 @@ output += "\\end{nonogram}"
 output +="\\end{center}"
 output += "\\end{document}"
 
-with open(outfile, 'w') as f:
+with outfile as f:
     f.write(output)
